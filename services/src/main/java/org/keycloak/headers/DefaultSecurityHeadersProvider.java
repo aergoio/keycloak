@@ -71,6 +71,9 @@ public class DefaultSecurityHeadersProvider implements SecurityHeadersProvider {
         MultivaluedMap<String, Object> headers = responseContext.getHeaders();
 
         if (responseType == null && !isEmptyMediaTypeAllowed(requestContext, responseContext)) {
+            LOGGER.info("responseType: " + requestType);
+            LOGGER.info("requestContext: " + requestContext.toString());
+            LOGGER.info("responseContext: " + responseContext.toString());
             LOGGER.errorv("MediaType not set on path {0}, with response status {1}", session.getContext().getUri().getRequestUri().getPath(), responseContext.getStatus());
             throw new InternalServerErrorException();
         }
